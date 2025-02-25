@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
+  get("/", { :controller => "items", :action => "index" })
+
   # Routes for the Item resource:
 
   # CREATE
   post("/insert_item", { :controller => "items", :action => "create" })
-          
+
   # READ
   get("/items", { :controller => "items", :action => "index" })
   
