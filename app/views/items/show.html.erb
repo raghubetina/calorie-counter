@@ -1,0 +1,146 @@
+<div>
+  <div>
+    <h1>
+      Item #<%= @the_item.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/items">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_item/<%= @the_item.id %>">
+          Delete item
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Photo
+      </dt>
+      <dd>
+        <%= @the_item.photo %>
+      </dd>
+
+      <dt>
+        Calories
+      </dt>
+      <dd>
+        <%= @the_item.calories %>
+      </dd>
+
+      <dt>
+        Carbs
+      </dt>
+      <dd>
+        <%= @the_item.carbs %>
+      </dd>
+
+      <dt>
+        Protein
+      </dt>
+      <dd>
+        <%= @the_item.protein %>
+      </dd>
+
+      <dt>
+        Fat
+      </dt>
+      <dd>
+        <%= @the_item.fat %>
+      </dd>
+
+      <dt>
+        Comment
+      </dt>
+      <dd>
+        <%= @the_item.comment %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_item.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_item.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit item
+    </h2>
+
+    <form action="/modify_item/<%= @the_item.id %>"  method="post" >
+      <div>
+        <label for="photo_box">
+          Photo
+        </label>
+
+        <input type="text" id="photo_box" name="query_photo" value="<%= @the_item.photo %>">
+      </div>
+
+      <div>
+        <label for="calories_box">
+          Calories
+        </label>
+
+        <input type="text" id="calories_box" name="query_calories" value="<%= @the_item.calories %>">
+      </div>
+
+      <div>
+        <label for="carbs_box">
+          Carbs
+        </label>
+
+        <input type="text" id="carbs_box" name="query_carbs" value="<%= @the_item.carbs %>">
+      </div>
+
+      <div>
+        <label for="protein_box">
+          Protein
+        </label>
+
+        <input type="text" id="protein_box" name="query_protein" value="<%= @the_item.protein %>">
+      </div>
+
+      <div>
+        <label for="fat_box">
+          Fat
+        </label>
+
+        <input type="text" id="fat_box" name="query_fat" value="<%= @the_item.fat %>">
+      </div>
+
+      <div>
+        <label for="comment_box">
+          Comment
+        </label>
+
+        <textarea id="comment_box" name="query_comment"><%= @the_item.comment %></textarea>
+      </div>
+
+      <button>
+        Update item
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

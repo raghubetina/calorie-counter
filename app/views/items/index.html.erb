@@ -1,0 +1,166 @@
+<div>
+  <div>
+    <h1>
+      List of all items
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new item
+    </h2>
+
+    <form action="/insert_item" method="post">
+      <div>
+        <label for="photo_box">
+          Photo
+        </label>
+
+        <input type="text" id="photo_box" name="query_photo">
+      </div>
+
+      <div>
+        <label for="calories_box">
+          Calories
+        </label>
+
+        <input type="text" id="calories_box" name="query_calories">
+      </div>
+
+      <div>
+        <label for="carbs_box">
+          Carbs
+        </label>
+
+        <input type="text" id="carbs_box" name="query_carbs">
+      </div>
+
+      <div>
+        <label for="protein_box">
+          Protein
+        </label>
+
+        <input type="text" id="protein_box" name="query_protein">
+      </div>
+
+      <div>
+        <label for="fat_box">
+          Fat
+        </label>
+
+        <input type="text" id="fat_box" name="query_fat">
+      </div>
+
+      <div>
+        <label for="comment_box">
+          Comment
+        </label>
+
+        <textarea id="comment_box" name="query_comment" rows="3"></textarea>
+      </div>
+
+      <button>
+        Create item
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Photo
+        </th>
+
+        <th>
+          Calories
+        </th>
+
+        <th>
+          Carbs
+        </th>
+
+        <th>
+          Protein
+        </th>
+
+        <th>
+          Fat
+        </th>
+
+        <th>
+          Comment
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_items.each do |an_item| %>
+      <tr>
+        <td>
+          <%= an_item.id %>
+        </td>
+
+        <td>
+          <%= an_item.photo %>
+        </td>
+
+        <td>
+          <%= an_item.calories %>
+        </td>
+
+        <td>
+          <%= an_item.carbs %>
+        </td>
+
+        <td>
+          <%= an_item.protein %>
+        </td>
+
+        <td>
+          <%= an_item.fat %>
+        </td>
+
+        <td>
+          <%= an_item.comment %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(an_item.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(an_item.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/items/<%= an_item.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
