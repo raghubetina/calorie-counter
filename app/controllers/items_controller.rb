@@ -94,23 +94,23 @@ class ItemsController < ApplicationController
     ).to_s
 
     # Parse the response JSON into a Ruby Hash
-    @parsed_response = JSON.parse(raw_response)
+    parsed_response = JSON.parse(raw_response)
 
-    render({:template => "items/preview"})
+    structured_output_json = parsed_response.fetch("choices").at(0).fetch("message").fetch("content")
 
+    output_hash = JSON.parse(structured_output_json)
 
+    the_item.calories = output_hash.fetch("calories")
+    the_item.carbs = output_hash.fetch("carbs")
+    the_item.protein = output_hash.fetch("protein")
+    the_item.fat = output_hash.fetch("fat")
 
-    # the_item.calories = params.fetch("query_calories")
-    # the_item.carbs = params.fetch("query_carbs")
-    # the_item.protein = params.fetch("query_protein")
-    # the_item.fat = params.fetch("query_fat")
-
-    # if the_item.valid?
-    #   the_item.save
-    #   redirect_to("/items", { :notice => "Item created successfully." })
-    # else
-    #   redirect_to("/items", { :alert => the_item.errors.full_messages.to_sentence })
-    # end
+    if the_item.valid?
+      the_item.save
+      redirect_to("/items", { :notice => "Item created successfully." })
+    else
+      redirect_to("/items", { :alert => the_item.errors.full_messages.to_sentence })
+    end
   end
 
   def update
