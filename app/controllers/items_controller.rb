@@ -30,9 +30,48 @@ class ItemsController < ApplicationController
       "content-type" => "application/json"
     }
 
+    schema_from_generator = '{
+      "name": "nutrition_facts",
+      "strict": true,
+      "schema": {
+        "type": "object",
+        "properties": {
+          "protein": {
+            "type": "integer",
+            "description": "Amount of protein in grams."
+          },
+          "carbs": {
+            "type": "integer",
+            "description": "Amount of carbohydrates in grams."
+          },
+          "fat": {
+            "type": "integer",
+            "description": "Amount of fat in grams."
+          },
+          "calories": {
+            "type": "integer",
+            "description": "Total calories."
+          }
+        },
+        "required": [
+          "protein",
+          "carbs",
+          "fat",
+          "calories"
+        ],
+        "additionalProperties": false
+      }
+    }'
+
+    response_format = JSON.parse("{
+      \"type\": \"json_schema\",
+      \"json_schema\": #{schema_from_generator}
+    }")
+
     # Prepare a hash that will become the body of the request
     request_body_hash = {
       "model" => "gpt-4o",
+      "response_format" => response_format,
       "messages" => [
         {
           "role" => "system",
